@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/* 1. Define Design Tokens in :root */
+:root {
+  --background: #fafafa;
+  --foreground: #0f172a;
+  --primary: #0d9488;
+  --primary-foreground: #ffffff;
+  --secondary: #f59e0b;
+  --secondary-foreground: #ffffff;
+  --accent: #6366f1;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --border: #e2e8f0;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+
+/* 3. Dark Mode Overrides */
+.dark {
+  --background: #020617;
+  --foreground: #f8fafc;
+  --primary: #14b8a6;
+  --primary-foreground: #ffffff;
+  --secondary: #fbbf24;
+  --secondary-foreground: #0f172a;
+  --accent: #818cf8;
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --border: #1e293b;
+}
+
+/* 4. Base Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* 5. Custom Utilities using @layer utilities (Editor-friendly) */
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20;
+    @apply dark:bg-slate-900/70 dark:border-slate-800/20;
+  }
+
+  .glass-card {
+    @apply bg-white/40 backdrop-blur-lg border border-white/20 shadow-xl;
+    @apply dark:bg-slate-900/40 dark:border-slate-800/20;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+  }
+}
+
+/* 6. Scroll Behavior (Targeting attribute as per Next.js warning) */
+html[data-scroll-behavior="smooth"] {
+  scroll-behavior: smooth;
+}
